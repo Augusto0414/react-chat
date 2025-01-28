@@ -6,9 +6,10 @@ export const RegisterPage = () => {
     const navigate = useNavigate()
     const handleBack = () => navigate(-1);
     return (
-        <>
+        <div className="overflow-scroll md:h-[85%]">
             <div>
-                <header className="w-full flex items-center relative">
+                {/*Encabezado*/}
+                <header className="w-full mb-5 flex items-center relative">
                     <button
                         onClick={handleBack}
                         className="absolute left-4 rounded-full p-3 bg-white cursor-pointer">
@@ -18,7 +19,9 @@ export const RegisterPage = () => {
                         Registrarse
                     </h1>
                 </header>
-                <form action="">
+
+                {/*Formulario*/}
+                <form action="" >
                     <div className="w-full px-6 space-y-4">
                         <Label htmlFor="name" className="text-sm text-gray-500">
                             Nombre de usuario
@@ -47,9 +50,18 @@ export const RegisterPage = () => {
                             name="password"
                             placeholder="Contraseña"
                         />
+                        <Label htmlFor="password" className="text-sm text-gray-500">
+                            Confirmar contraseña
+                        </Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            name="password2"
+                            placeholder="Confirmar contraseña"
+                        />
                         <button
                             type="submit"
-                            className="w-full mt-6 rounded-xl p-4 text-white font-semibold 
+                            className="w-full mt-6 mb-7 rounded-xl p-4 text-white font-semibold 
                                         hover:bg-[#2cc368f3] bg-[#2CC369] cursor-pointer"
                         >
                             Registrarse
@@ -57,8 +69,7 @@ export const RegisterPage = () => {
                     </div>
 
                 </form>
-
             </div>
-        </>
+        </div>
     )
 }

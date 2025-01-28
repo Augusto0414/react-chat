@@ -47,7 +47,8 @@ export const AuthPage = (): JSX.Element => {
 
                 {/* Sección derecha: Formulario */}
                 <section className="w-full md:w-1/2 h-auto md:h-full bg-[#EAE5F0] flex flex-col justify-center items-center px-6 md:px-12 py-8">
-                    <div className="w-full max-w-md h-auto md:h-[85%] flex justify-center items-center bg-white z-20 rounded-xl">
+                    <div className="w-full max-w-md h-auto md:h-[85%] 
+                            flex justify-center items-center bg-white z-20 rounded-xl">
                         <Outlet />
                     </div>
                 </section>
