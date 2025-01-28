@@ -1,56 +1,115 @@
 import { MdArrowRight } from "react-icons/md";
 import { Input } from "../../components";
 
+const User = [
+    {
+        id: "1",
+        username: "Usuario 1",
+        avatar: "https://github.com/Augusto0414.png",
+        lastMessage: "Hola, cómo estás?",
+        timestamp: "1637394710",
+        unreadMessages: 2,
+        active: false,
+    },
+    {
+        id: "2",
+        username: "Usuario 2",
+        avatar: "https://github.com/Augusto0414.png",
+        lastMessage: "Hola, cómo estás?",
+        timestamp: "1637394710",
+        unreadMessages: 0,
+        active: true,
+    },
+    {
+        id: "3",
+        username: "Usuario 3",
+        avatar: "https://github.com/Augusto0414.png",
+        lastMessage: "Hola, cómo estás?",
+        timestamp: "1637394710",
+        unreadMessages: 5,
+        active: false,
+    }
+];
+
 export const ChatPage = () => {
     return (
-        <section className="flex h-screen">
+        <section className="flex flex-col lg:flex-row h-screen">
             {/* Sidebar */}
-            <aside className="flex flex-col h-full bg-[#25252D] w-64">
-                {/* Encabezado del sidebar */}
-                <header className="flex justify-center items-center p-4">
+            <aside className="flex flex-col h-full bg-[#25252D] w-full lg:w-64">
+                {/* Header */}
+                <header className="flex items-center gap-4 p-4 border-b border-gray-700">
                     <img
                         src="https://github.com/Augusto0414.png"
                         alt="User Avatar"
                         className="w-12 h-12 rounded-full"
                     />
-                    <h1 className="m-2 text-white font-medium">Nombre de usuario</h1>
+                    <h1 className="text-white font-medium text-lg">Nombre de Usuario</h1>
                 </header>
 
-                {/* Botón para colapsar/expandir el sidebar */}
-                <div className="flex-1"></div>
-                <div className="p-4">
-                    <button className="w-full border-dashed 
-                    border-2 border-[#9A7FFB] rounded-3xl cursor-pointer px-6 py-3">
-                        <div className="flex items-center justify-between">
-                            <span className="text-[#9A7FFB] text-sm font-semibold">salir</span>
-                            <MdArrowRight className="text-[#9A7FFB]" size={32} />
+                {/* User List */}
+                <div className="flex-1 overflow-y-auto">
+                    {User.map(user => (
+                        <div
+                            key={user.id}
+                            className={`flex items-center gap-4 px-4 py-3 hover:bg-gray-600 cursor-pointer transition ${user.active ? "bg-[#343434]" : ""
+                                }`}
+                        >
+                            <img
+                                src={user.avatar}
+                                alt="User Avatar"
+                                className="w-12 h-12 rounded-full"
+                            />
+                            <div className="flex-1">
+                                <h2 className="text-white font-medium text-sm">{user.username}</h2>
+                                <p className="text-gray-400 text-xs truncate">{user.lastMessage}</p>
+                            </div>
+                            {user.unreadMessages > 0 && (
+                                <span className="bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                                    {user.unreadMessages}
+                                </span>
+                            )}
                         </div>
+                    ))}
+                </div>
+
+                {/* Logout Button */}
+                <div className="p-4">
+                    <button className="w-full flex items-center justify-between border border-[#9A7FFB] text-[#9A7FFB] px-4 py-3 rounded-lg hover:bg-[#343434] transition">
+                        <span className="text-sm font-semibold">Salir</span>
+                        <MdArrowRight size={20} />
                     </button>
                 </div>
             </aside>
 
-            {/* Contenido del chat */}
-            <main className="flex flex-col h-screen w-screen bg-[#1E1E24]">
-                {/* Chat */}
-                <div className="p-4">
-                    <h1 className="text-white">Hello</h1>
+            {/* Chat Content */}
+            <main className="flex flex-col h-full w-full bg-[#1E1E24]">
+                {/* Chat Header */}
+                <header className="p-4 border-b border-gray-700">
+                    <h1 className="text-white text-lg font-medium">Chat con Usuario 2</h1>
+                </header>
+
+                {/* Chat Messages */}
+                <div className="flex-1 p-4 overflow-y-auto">
+                    <p className="text-gray-400 text-center">No hay mensajes aún.</p>
                 </div>
 
-                {/* Enviar mensaje */}
-                <form className="mt-auto p-4">
-                    <div className="flex gap-4">
+                {/* Message Input */}
+                <form className="p-4 border-t border-gray-700">
+                    <div className="flex items-center gap-4">
                         <Input
                             type="text"
-                            placeholder="Escribir mensaje"
-                            className="flex-grow px-6 py-3 
-                            text-white rounded-xl border-2 border-[#9A7FFB] bg-transparent"
+                            placeholder="Escribe un mensaje..."
+                            className="flex-1 px-4 py-2 text-white rounded-lg bg-[#343434] border border-[#9A7FFB] focus:outline-none focus:ring-2 focus:ring-[#9A7FFB]"
                         />
-                        <button className="flex-shrink-0 w-32 
-                        rounded-xl bg-[#D1EDFF] text-[#1E1E24] font-semibold py-3 cursor-pointer">
+                        <button
+                            type="submit"
+                            className="px-4 py-2 bg-[#9A7FFB] text-white font-semibold rounded-lg hover:bg-[#7A63FF] transition"
+                        >
                             Enviar
                         </button>
                     </div>
                 </form>
             </main>
-        </section>)
-}
+        </section>
+    );
+};
