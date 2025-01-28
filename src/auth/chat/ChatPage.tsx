@@ -51,7 +51,7 @@ export const ChatPage = () => {
                     {User.map(user => (
                         <div
                             key={user.id}
-                            className={`flex items-center gap-4 px-4 py-3 hover:bg-gray-600 cursor-pointer transition ${user.active ? "bg-[#343434]" : ""
+                            className={`flex items-center gap-4 px-1 py-3 hover:bg-gray-600 cursor-pointer transition ${user.active ? "bg-[#343434]" : ""
                                 }`}
                         >
                             <img
@@ -61,7 +61,7 @@ export const ChatPage = () => {
                             />
                             <div className="flex-1">
                                 <h2 className="text-white font-medium text-sm">{user.username}</h2>
-                                <p className="text-gray-400 text-xs truncate">{user.lastMessage}</p>
+                                <p className="truncate text-gray-400 text-xs">{user.lastMessage}</p>
                             </div>
                             {user.unreadMessages > 0 && (
                                 <span className="bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">

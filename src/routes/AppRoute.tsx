@@ -5,12 +5,11 @@ export const AppRoute = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<ChatPage />} >
+                <Route path="/" element={< AuthPage />} >
                     <Route index element={<LoginPage />} />
-                    <Route path="login" element={<LoginPage />} />
                     <Route path="register" element={<RegisterPage />} />
                 </Route>
-                <Route path="Home" element={<></>} />
+                <Route path="home" element={<ChatPage />} />
             </Routes>
         </Router>
 
