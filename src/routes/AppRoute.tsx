@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { AuthPage, LoginPage, RegisterPage } from "../auth/pages";
 import { ChatPage } from "../auth/chat";
 export const AppRoute = () => {
@@ -10,6 +10,7 @@ export const AppRoute = () => {
                     <Route path="register" element={<RegisterPage />} />
                 </Route>
                 <Route path="home" element={<ChatPage />} />
+                <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
         </Router>
 

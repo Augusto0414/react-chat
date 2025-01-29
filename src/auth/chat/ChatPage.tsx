@@ -1,5 +1,6 @@
 import { MdArrowRight } from "react-icons/md";
 import { Input } from "../../components";
+import { SendMessage } from "./components/SendMessage";
 
 const User = [
     {
@@ -89,10 +90,13 @@ export const ChatPage = () => {
                 </header>
 
                 {/* Chat Messages */}
-                <div className="flex-1 p-4 overflow-y-auto">
-                    <p className="text-gray-400 text-center">No hay mensajes aún.</p>
-                </div>
-
+                <SendMessage
+                    message="Hola, cómo estás?"
+                    time="hace 5 minutos"
+                    userType="sender"
+                    avatarUrl="http://github.com/augusto0414.png"
+                />
+                <div className="flex flex-1"></div>
                 {/* Message Input */}
                 <form className="p-4 border-t border-gray-700">
                     <div className="flex items-center gap-4">
