@@ -1,5 +1,5 @@
 import { MdArrowRight } from "react-icons/md";
-import { Input } from "../../components";
+import { Input } from "../components";
 import { SendMessage } from "./components/SendMessage";
 
 const User = [
