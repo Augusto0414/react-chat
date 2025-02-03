@@ -10,4 +10,13 @@ const chatApi = axios.create({
   },
 });
 
+// TODO: Intecerptor para tomar el token
+chatApi.interceptors.request.use((config) => {
+  if (config.headers) {
+    config.headers.set("Authorization", localStorage.getItem("token") || "");
+  }
+
+  return config;
+});
+
 export default chatApi;

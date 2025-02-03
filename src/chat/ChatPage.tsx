@@ -1,6 +1,7 @@
 import { MdArrowRight } from "react-icons/md";
 import { Input } from "../components";
 import { SendMessage } from "./components/SendMessage";
+import { useAuthStore } from "../hooks/useAuthStore";
 
 const User = [
     {
@@ -33,6 +34,8 @@ const User = [
 ];
 
 export const ChatPage = () => {
+    const { logoutUser } = useAuthStore();
+    const onLogout = () => logoutUser();
     return (
         <section className="flex flex-col lg:flex-row h-screen">
             {/* Sidebar */}
@@ -75,7 +78,9 @@ export const ChatPage = () => {
 
                 {/* Logout Button */}
                 <div className="p-4">
-                    <button className="w-full flex items-center justify-between border border-[#9A7FFB] text-[#9A7FFB] px-4 py-3 rounded-lg hover:bg-[#343434] transition">
+                    <button
+                        onClick={onLogout}
+                        className="w-full flex items-center justify-between border border-[#9A7FFB] text-[#9A7FFB] px-4 py-3 rounded-lg hover:bg-[#343434] transition">
                         <span className="text-sm font-semibold">Salir</span>
                         <MdArrowRight size={20} />
                     </button>

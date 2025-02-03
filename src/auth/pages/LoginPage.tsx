@@ -1,9 +1,33 @@
 import { Link } from "react-router-dom";
 import { Label, Input } from "../../components";
+import { useForm } from "../../hooks/useForm";
+import { useAuthStore } from "../../hooks/useAuthStore";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
+
 // import { Input } from "../../components/Input";
+
+const loginformField = {
+    email: '',
+    password: ''
+}
 export const LoginPage = () => {
+    const { email, password, onInputChange: onInputLogin } = useForm(loginformField);
+    const { errorMessage, sigIn } = useAuthStore();
+
+    const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        sigIn({ email, password });
+    }
+
+    useEffect(() => {
+        if (errorMessage) {
+            Swal.fire('Error en la autenticación', errorMessage, "error");
+        }
+    }, [errorMessage])
+
     return (
-        <form className="w-full h-full flex flex-col justify-center items-center">
+        <form onSubmit={onSubmit} className="w-full h-full flex flex-col justify-center items-center">
             {/* Campo de formulario título */}
             <div className="w-full text-center mb-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-[#343434]">Iniciar sesión</h1>
@@ -11,7 +35,7 @@ export const LoginPage = () => {
                     ¿Aún no tienes una cuenta?
                     <small className="mx-1.5 cursor-pointer text-sm md:text-lg text-[#2CC369]">
                         <Link
-                            to="/register"
+                            to="/auth/register"
                             className="mx-1.5 cursor-pointer text-sm md:text-lg text-[#2CC369]"
                         >
                             Regístrate
@@ -29,6 +53,8 @@ export const LoginPage = () => {
                     type="email"
                     name="email"
                     placeholder="Correo electrónico"
+                    value={email}
+                    onChange={onInputLogin}
                 />
                 <Label htmlFor="password" className="text-sm text-gray-500">
                     Contraseña
@@ -38,6 +64,8 @@ export const LoginPage = () => {
                     type="password"
                     name="password"
                     placeholder="Contraseña"
+                    value={password}
+                    onChange={onInputLogin}
                 />
                 <button
                     type="submit"
